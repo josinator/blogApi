@@ -25,9 +25,9 @@ services:
     App\Controller\:
         resource: '../src/App/Controller/'
         tags: [ 'controller.service_arguments' ]
-    App\Command\:
-        resource: '../src/App/Command'
-        tags: [ 'console.command' ]
+#    App\Command\:
+#        resource: '../src/App/Command'
+#        tags: [ 'console.command' ]
 
     Blog\:
         resource: '../src/Blog'
