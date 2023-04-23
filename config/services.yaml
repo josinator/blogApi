@@ -13,8 +13,8 @@ services:
         bind:
             Common\Application\CommandBus $commandBus: '@Common\Infrastructure\Application\SymfonyMessengerCommandBus'
             Common\Application\QueryBus $queryBus: '@Common\Infrastructure\Application\SymfonyMessengerQueryBus'
-            Blog\DomainModel\AuthorRepository $authorRepository: "@Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrineAuthorRepository"
-            Blog\DomainModel\PostRepository $PostRepository: "@Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrinePostRepository"
+            Blog\DomainModel\PostRepository $postRepository: '@Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrinePostRepository'
+            Blog\DomainModel\AuthorRepository $authorRepository: '@Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrineAuthorRepository'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

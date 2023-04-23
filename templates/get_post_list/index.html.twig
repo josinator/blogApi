@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GetPostListController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    Post list:
+
+    <ul>
+        {% for post in postItems %}
+            <li>
+                <a href="{{ url('app_get_post_detail', {'id': post.id}) }}"><span>title:{{ post.title }}</span></a>
+                <a href="{{ url('app_get_author_detail', {'id': post.authorId}) }}"><span>author:{{ post.title }}</span></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

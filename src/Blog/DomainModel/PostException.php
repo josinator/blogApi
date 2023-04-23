@@ -23,5 +23,10 @@ class PostException extends Exception
         return new self("Try to create a Post with to short description");
     }
 
+    public static function notPostFoundForId(int $id)
+    {
+        return new self(sprintf("No post found for Id: %s", $id));
+    }
+
 
 }

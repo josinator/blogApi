@@ -6,10 +6,12 @@ namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
 use Blog\DomainModel\Post;
 use Blog\DomainModel\PostRepository;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Exception\NotSupported;
 
 class DoctrinePostRepository implements PostRepository
 {
-    public function __construct(private readonly EntityManager $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
 
     }
@@ -27,12 +29,19 @@ class DoctrinePostRepository implements PostRepository
     }
 
 
-    public function findById(int $postId): Post
+    /**
+     * @throws NotSupported
+     */
+    public function findById(int $postId): ?Post
     {
         return $this->entityManager->getRepository(Post::class)->findOneBy(
             ['id' => $postId]
         );
     }
+
+
+
+
 
     /**
      * @return array|Post[]
@@ -46,5 +55,10 @@ class DoctrinePostRepository implements PostRepository
             ->setFirstResult(($page - 1) * $limit)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAll(): array
+    {
+        return $this->entityManager->getRepository(Post::class)->findAll();
     }
 }

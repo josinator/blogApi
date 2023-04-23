@@ -86,8 +86,13 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "fix-cs": "PHP_CS_FIXER_IGNORE_ENV=1 php vendor/bin/php-cs-fixer --verbose --config=.php-cs-fixer.dist --using-cache=no --path-mode=intersection fix",
+        "test": "php vendor/bin/simple-phpunit",
+        "psalm": "php vendor/bin/psalm --no-cache"
     },
+
+
     "conflict": {
         "symfony/symfony": "*"
     },

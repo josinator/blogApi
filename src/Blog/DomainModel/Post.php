@@ -2,9 +2,7 @@
 
 namespace Blog\DomainModel;
 
-use Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrinePostRepository;
-use Doctrine\ORM\Mapping as ORM;
-use PharIo\Manifest\Author;
+
 
 class Post
 {
