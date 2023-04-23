@@ -37,6 +37,8 @@ services:
     # Common
     Common\:
         resource: '../src/Common'
+        exclude:
+            - '../src/Common/Domain/'
 
 
 
