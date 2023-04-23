@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          ../../../../../../vendor/doctrine/orm/doctrine-mapping.xsd">
+
+    <entity name="Blog\DomainModel\Author" table="authors">
+        <embedded name="id" class="Blog\DomainModel\AuthorId" />
+        <field name="name"/>
+        <field name="userName"/>
+        <embedded name="email" class="Common\DomainModel\Email" />
+        <embedded name="address" class="Common\DomainModel\Address" />
+        <embedded name="phone" class="Common\DomainModel\Phone" />
+        <embedded name="site" class="Common\DomainModel\WebSites" />
+        <embedded name="company" class="Common\DomainModel\Company" />
+        <one-to-many field="posts" target-entity="Blog\DomainModel\Post" mapped-by="post" fetch="EXTRA_LAZY"/>
+    </entity>
+</doctrine-mapping>
