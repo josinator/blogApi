@@ -14,12 +14,12 @@ doctrine:
             Blog:
                 type: xml
                 dir: '%kernel.project_dir%/src/Blog/Infrastructure/Persistence/Doctrine/Mapping'
-                prefix: Blog
+                prefix: Blog\DomainModel
                 is_bundle: false
             Common:
                 type: xml
                 dir: '%kernel.project_dir%/src/Common/Infrastructure/Persistence/Doctrine/Mapping'
-                prefix: Common
+                prefix: Common\DomainModel
                 is_bundle: false
 
 when@test:

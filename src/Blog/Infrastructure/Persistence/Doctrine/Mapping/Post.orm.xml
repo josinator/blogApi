@@ -8,6 +8,6 @@
         <embedded name="id" class="Blog\DomainModel\PostId" />
         <field name="title"/>
         <field name="description"/>
-        <many-to-one field="Author" target-entity="Blog\DomainModel\Author"/>
+        <many-to-one field="author" target-entity="Blog\DomainModel\Author"/>
     </entity>
 </doctrine-mapping>

@@ -2,9 +2,9 @@
 
 namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
 
-use Blog\Domain\Post;
-use Blog\Domain\PostId;
-use Blog\Domain\PostRepository;
+use Blog\DomainModel\Post;
+use Blog\DomainModel\PostId;
+use Blog\DomainModel\PostRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;

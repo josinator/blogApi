@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Domain;
+namespace Blog\DomainModel;
 
 use Doctrine\DBAL\Exception;
 use phpDocumentor\Reflection\Types\Self_;

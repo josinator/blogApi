@@ -7,6 +7,6 @@
         <field name="street" type="string"/>
         <field name="suit" type="string"/>
         <field name="city" type="string"/>
-        <embedded name="zipcode" class="Common\DomainModel\ZipCode"/>
+        <embedded name="zipCode" class="Common\DomainModel\ZipCode"/>
     </embeddable>
 </doctrine-mapping>

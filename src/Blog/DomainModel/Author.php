@@ -1,14 +1,14 @@
 <?php
 
-namespace Blog\Domain;
+namespace Blog\DomainModel;
 
-use Common\Domain\Address;
-use Common\Domain\AddressException;
-use Common\Domain\Company;
-use Common\Domain\CompanyException;
-use Common\Domain\Email;
-use Common\Domain\Phone;
-use Common\Domain\WebSites;
+use Common\DomainModel\Address;
+use Common\DomainModel\AddressException;
+use Common\DomainModel\Company;
+use Common\DomainModel\CompanyException;
+use Common\DomainModel\Email;
+use Common\DomainModel\Phone;
+use Common\DomainModel\WebSites;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -16,10 +16,10 @@ use Doctrine\Common\Collections\Collection;
 class Author
 {
 
-    private AuthorId $authorId;
+    private AuthorId $id;
 
     /** @var Collection | ArrayCollection blogs */
-    private Collection $blogs;
+    private Collection $posts;
 
     private function __construct(private string  $name,
                                 private string   $userName,
@@ -30,8 +30,8 @@ class Author
                                 private Company  $company
     )
     {
-        $this->authorId = AuthorId::new();
-        $this->blogs = new ArrayCollection();
+        $this->id = AuthorId::new();
+        $this->posts = new ArrayCollection();
     }
 
     /**
@@ -68,15 +68,15 @@ class Author
         }
     }
 
-    public function getAuthorId(): AuthorId
+    public function getId(): AuthorId
     {
-        return $this->authorId;
+        return $this->id;
     }
 
 
-    public function setAuthorId(AuthorId $authorId): void
+    public function setId(AuthorId $id): void
     {
-        $this->authorId = $authorId;
+        $this->id = $id;
     }
 
     public function getName(): string
@@ -159,15 +159,15 @@ class Author
     }
 
 
-    public function getBlogs(): Collection
+    public function getPosts(): Collection
     {
-        return $this->blogs;
+        return $this->posts;
     }
 
 
-    public function setBlogs(Collection $blogs): void
+    public function setPosts(Collection $posts): void
     {
-        $this->blogs = $blogs;
+        $this->posts = $posts;
     }
 
 

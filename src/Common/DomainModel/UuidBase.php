@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Domain;
+namespace Common\DomainModel;
 
 
 use Psalm\Immutable;
@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 #[Immutable]
-class UuidaBase extends ValueObject
+class UuidBase extends ValueObject
 {
     protected UuidInterface $id;
     protected UuidInterface $string;

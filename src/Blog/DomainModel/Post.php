@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\Domain;
+namespace Blog\DomainModel;
 
 use Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrinePostRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,14 +9,14 @@ use PharIo\Manifest\Author;
 class Post
 {
     private const DESCRIPTION_MIN_LENGTH = 25;
-    public readonly PostId $postId;
+    public readonly PostId $id;
 
     private function __construct(
         private string $title,
         private string $description,
         private Author $author)
     {
-        $this->postId =  PostId::new();
+        $this->id =  PostId::new();
 
     }
 

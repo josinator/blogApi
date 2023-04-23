@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Domain;
+namespace Common\DomainModel;
 
 class EmailException extends \Exception
 {

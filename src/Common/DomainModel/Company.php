@@ -1,13 +1,13 @@
 <?php
 
-namespace Common\Domain;
+namespace Common\DomainModel;
 use Psalm\Immutable;
 
 #[Immutable]
 class Company extends ValueObject
 {
 
-    private function __construct(string $name)
+    private function __construct(public readonly string $name)
     {
     }
 
