@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Collection;
 class Author
 {
 
-    private AuthorId $id;
+    public readonly int $id;
 
     /** @var Collection | ArrayCollection blogs */
     private Collection $posts;
@@ -30,7 +30,6 @@ class Author
                                 private Company  $company
     )
     {
-        $this->id = AuthorId::new();
         $this->posts = new ArrayCollection();
     }
 

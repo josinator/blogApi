@@ -5,7 +5,9 @@
                           ../../../../../../vendor/doctrine/orm/doctrine-mapping.xsd">
 
     <entity name="Blog\DomainModel\Post" table="posts">
-        <embedded name="id" class="Blog\DomainModel\PostId" />
+        <id name="id" type="bigint" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
         <field name="title"/>
         <field name="description"/>
         <many-to-one field="author" target-entity="Blog\DomainModel\Author"/>

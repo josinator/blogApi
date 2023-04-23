@@ -9,14 +9,13 @@ use PharIo\Manifest\Author;
 class Post
 {
     private const DESCRIPTION_MIN_LENGTH = 25;
-    public readonly PostId $id;
+    public readonly int $id;
 
     private function __construct(
         private string $title,
         private string $description,
         private Author $author)
     {
-        $this->id =  PostId::new();
 
     }
 

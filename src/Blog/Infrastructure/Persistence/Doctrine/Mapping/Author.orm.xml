@@ -5,7 +5,9 @@
                           ../../../../../../vendor/doctrine/orm/doctrine-mapping.xsd">
 
     <entity name="Blog\DomainModel\Author" table="authors">
-        <embedded name="id" class="Blog\DomainModel\AuthorId" />
+        <id name="id" type="bigint" column="id">
+            <generator strategy="IDENTITY"/>
+        </id>
         <field name="name"/>
         <field name="userName"/>
         <embedded name="email" class="Common\DomainModel\Email" />
