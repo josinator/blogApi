@@ -2,12 +2,10 @@
 
 namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
 
+
 use Blog\DomainModel\Post;
-use Blog\DomainModel\PostId;
 use Blog\DomainModel\PostRepository;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
-use Doctrine\Persistence\ManagerRegistry;
 
 class DoctrinePostRepository implements PostRepository
 {
@@ -29,10 +27,10 @@ class DoctrinePostRepository implements PostRepository
     }
 
 
-    public function findById(PostId $postId): Post
+    public function findById(int $postId): Post
     {
         return $this->entityManager->getRepository(Post::class)->findOneBy(
-            ['id.id' => $postId->id()]
+            ['id' => $postId]
         );
     }
 
