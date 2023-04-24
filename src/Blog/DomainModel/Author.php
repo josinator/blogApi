@@ -67,16 +67,11 @@ class Author
         }
     }
 
-    public function getId(): AuthorId
+    public function getId(): int
     {
         return $this->id;
     }
 
-
-    public function setId(AuthorId $id): void
-    {
-        $this->id = $id;
-    }
 
     public function getName(): string
     {

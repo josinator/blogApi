@@ -27,7 +27,7 @@ class DoctrineAuthorRepository implements AuthorRepository
     }
 
 
-    public function findById(int $authorId): Author
+    public function findById(int $authorId): ?Author
     {
         return $this->entityManager->getRepository(Author::class)->findOneBy(
             ['id' => $authorId]

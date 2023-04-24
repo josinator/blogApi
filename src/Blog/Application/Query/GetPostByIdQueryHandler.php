@@ -15,10 +15,6 @@ class GetPostByIdQueryHandler
 
     public function __invoke(GetPostByIdQuery $query): PostDetailDto
     {
-        if( !is_numeric($query->id)){
-            throw PostException::notPostFoundForId($query->id);
-        }
-
         $post =  $this->postRepository->findById($query->id);
 
         if($post === null){

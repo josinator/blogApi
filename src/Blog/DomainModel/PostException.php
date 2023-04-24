@@ -4,7 +4,9 @@ namespace Blog\DomainModel;
 
 use Doctrine\DBAL\Exception;
 use phpDocumentor\Reflection\Types\Self_;
+use Psalm\Immutable;
 
+#[Immutable]
 class PostException extends Exception
 {
 
