@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Blog\DomainModel;
 
 use Common\DomainModel\Address;
@@ -12,24 +14,22 @@ use Common\DomainModel\WebSites;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-
 class Author
 {
+    private int $id;
 
-    public readonly int $id;
-
-    /** @var Collection | ArrayCollection blogs */
+    /** @var Collection|ArrayCollection blogs */
     private Collection $posts;
 
-    private function __construct(private string  $name,
-                                private string   $userName,
-                                private Email    $email,
-                                private Address  $address,
-                                private Phone    $phone,
-                                private WebSites $site,
-                                private Company  $company
-    )
-    {
+    private function __construct(
+        private string $name,
+        private string $userName,
+        private Email $email,
+        private Address $address,
+        private Phone $phone,
+        private WebSites $site,
+        private Company $company
+    ) {
         $this->posts = new ArrayCollection();
     }
 
@@ -38,19 +38,20 @@ class Author
      * @throws AddressException
      * @throws CompanyException
      */
-    public static function builder(string $name, string $userName, string $email, array $address, string $phone, string $site, array $company):self
+    public static function builder(string $name, string $userName, string $email, array $address, string $phone, string $site, array $company): self
     {
 
-            self::guardNameAndUserNameNotEmpty($name, $userName);
-            return new self(
-                name: $name,
-                userName: $userName,
-                email: new Email($email),
-                address: Address::build($address),
-                phone: new Phone($phone),
-                site: new WebSites($site),
-                company: Company::build($company)
-            );
+        self::guardNameAndUserNameNotEmpty($name, $userName);
+
+        return new self(
+            name: $name,
+            userName: $userName,
+            email: new Email($email),
+            address: Address::build($address),
+            phone: new Phone($phone),
+            site: new WebSites($site),
+            company: Company::build($company)
+        );
     }
 
     /**
@@ -58,11 +59,11 @@ class Author
      */
     private static function guardNameAndUserNameNotEmpty(string $name, string $userName): void
     {
-        if(empty($name)){
+        if (empty($name)) {
             throw AuthorException::withEmptyName();
         }
 
-        if(empty($userName)){
+        if (empty($userName)) {
             throw AuthorException::withEmptyUserName();
         }
     }
@@ -72,36 +73,30 @@ class Author
         return $this->id;
     }
 
-
     public function getName(): string
     {
         return $this->name;
     }
-
 
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-
     public function getUserName(): string
     {
         return $this->userName;
     }
-
 
     public function setUserName(string $userName): void
     {
         $this->userName = $userName;
     }
 
-
     public function getEmail(): Email
     {
         return $this->email;
     }
-
 
     public function setEmail(Email $email): void
     {
@@ -112,7 +107,6 @@ class Author
     {
         return $this->address;
     }
-
 
     public function setAddress(Address $address): void
     {
@@ -129,18 +123,15 @@ class Author
         $this->phone = $phone;
     }
 
-
     public function getSite(): WebSites
     {
         return $this->site;
     }
 
-
     public function setSite(WebSites $site): void
     {
         $this->site = $site;
     }
-
 
     public function getCompany(): Company
     {
@@ -152,20 +143,13 @@ class Author
         $this->company = $company;
     }
 
-
     public function getPosts(): Collection
     {
         return $this->posts;
     }
 
-
     public function setPosts(Collection $posts): void
     {
         $this->posts = $posts;
     }
-
-
-
-
-
 }

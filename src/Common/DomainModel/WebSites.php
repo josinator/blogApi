@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Common\DomainModel;
 
 use Psalm\Immutable;
@@ -20,7 +22,7 @@ class WebSites extends ValueObject
      */
     private function guard(string $site): void
     {
-        if (filter_var($site, FILTER_VALIDATE_DOMAIN) === false) {
+        if (false === filter_var($site, FILTER_VALIDATE_DOMAIN)) {
             throw WebSiteException::withInvalidValue($site);
         }
     }
@@ -34,5 +36,4 @@ class WebSites extends ValueObject
     {
         return $this->site;
     }
-
 }

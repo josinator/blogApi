@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Common\Infrastructure\Application;
 
-
 use Common\Application\Query;
 use Common\Application\QueryBus;
 use Symfony\Component\Messenger\HandleTrait;

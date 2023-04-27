@@ -1,7 +1,8 @@
 <?php
 
-namespace Blog\Application\Query;
+declare(strict_types=1);
 
+namespace Blog\Application\Query;
 
 use Blog\Application\DTO\PostItemDto;
 use Blog\DomainModel\PostRepository;
@@ -9,14 +10,11 @@ use Common\Application\Query;
 
 class GetAllPostQueryHandler implements Query
 {
-
     public function __construct(private readonly PostRepository $postRepository)
     {
     }
 
-
     /**
-     * @param GetAllPostQuery $query
      * @return array|PostItemDto[]
      */
     public function __invoke(GetAllPostQuery $query): array
@@ -24,8 +22,8 @@ class GetAllPostQueryHandler implements Query
         $posts = $this->postRepository->findAll();
 
         $listPosts = [];
-        foreach ($posts as $post){
-            $listPosts = PostItemDto::builder($post);
+        foreach ($posts as $post) {
+            $listPosts[] = PostItemDto::builder($post);
         }
 
         return $listPosts;

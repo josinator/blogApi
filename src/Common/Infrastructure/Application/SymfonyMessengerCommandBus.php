@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Common\Infrastructure\Application;
 
-
 use Common\Application\Command;
 use Common\Application\CommandBus;
 use Symfony\Component\Messenger\MessageBusInterface;

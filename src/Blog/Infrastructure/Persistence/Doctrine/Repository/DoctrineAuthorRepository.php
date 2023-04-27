@@ -1,15 +1,16 @@
 <?php
 
-namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
+declare(strict_types=1);
 
+namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
 
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorRepository;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class DoctrineAuthorRepository implements AuthorRepository
 {
-    public function __construct(private readonly EntityManager $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
 
     }
@@ -25,7 +26,6 @@ class DoctrineAuthorRepository implements AuthorRepository
         $this->entityManager->remove($author);
 
     }
-
 
     public function findById(int $authorId): ?Author
     {

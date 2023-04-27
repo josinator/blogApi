@@ -63,3 +63,7 @@ services:
         tags:
             - { name: messenger.message_handler, bus: query_bus }
 
+    Blog\Infrastructure\:
+        resource: '../src/Blog/Infrastructure'
+
+

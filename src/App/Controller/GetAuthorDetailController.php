@@ -10,9 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GetPostDetailController extends AbstractController
+class GetAuthorDetailController extends AbstractController
 {
-    #[Route('/post/{id}', name: 'app_get_post_detail')]
+    #[Route('/author/{id}', name: 'app_get_author_detail')]
     public function index(
         int $id,
         QueryBus $queryBus

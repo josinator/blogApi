@@ -1,11 +1,11 @@
 <?php
 
-namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
+declare(strict_types=1);
 
+namespace Blog\Infrastructure\Persistence\Doctrine\Repository;
 
 use Blog\DomainModel\Post;
 use Blog\DomainModel\PostRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\NotSupported;
 
@@ -28,7 +28,6 @@ class DoctrinePostRepository implements PostRepository
 
     }
 
-
     /**
      * @throws NotSupported
      */
@@ -38,10 +37,6 @@ class DoctrinePostRepository implements PostRepository
             ['id' => $postId]
         );
     }
-
-
-
-
 
     /**
      * @return array|Post[]

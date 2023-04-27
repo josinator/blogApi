@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Common\DomainModel;
+
 use Psalm\Immutable;
 
 #[Immutable]
 class Email extends ValueObject
 {
-
-    private string $email;
-    public function __construct(string $email)
+    public function __construct(private string $email)
     {
-        $this->guard($email);
+        $this->guard($this->email);
     }
 
-
-    private function guard(string $email)
+    private function guard(string $email): void
     {
-        if(filter_var($email,FILTER_VALIDATE_EMAIL) === false){
+        if (false === filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw EmailException::withInvalidValue($email);
         }
     }
@@ -30,5 +30,4 @@ class Email extends ValueObject
     {
         return $this->email;
     }
-
 }
