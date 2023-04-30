@@ -34,17 +34,8 @@ class DoctrineAuthorRepository implements AuthorRepository
         );
     }
 
-    /**
-     * @return array|Author[]
-     */
-    public function findPaginate(int $limit = 100, int $page = 1): array
+    public function findAll(): array
     {
-        return $this->entityManager->createQueryBuilder()
-            ->select('a')
-            ->from(Author::class, 'a')
-            ->setMaxResults($limit)
-            ->setFirstResult(($page - 1) * $limit)
-            ->getQuery()
-            ->getResult();
+        return $this->entityManager->getRepository(Author::class)->findAll();
     }
 }

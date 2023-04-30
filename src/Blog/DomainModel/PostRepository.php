@@ -13,6 +13,4 @@ interface PostRepository
     public function findById(int $postId): ?Post;
 
     public function findAll(): array;
-
-    public function findPaginate(int $limit, int $page): array;
 }

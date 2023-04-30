@@ -12,5 +12,5 @@ interface AuthorRepository
 
     public function findById(int $authorId): ?Author;
 
-    public function findPaginate(int $limit, int $page): array;
+    public function findAll();
 }

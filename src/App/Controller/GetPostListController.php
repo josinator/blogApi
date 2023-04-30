@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Blog\Application\Query\GetAllPostQuery;
+use Blog\Application\Query\GetAllPostsQuery;
 use Common\Application\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ class GetPostListController extends AbstractController
         QueryBus $queryBus
     ): Response {
 
-        $postItems = $queryBus->handle(new GetAllPostQuery());
+        $postItems = $queryBus->handle(new GetAllPostsQuery());
 
         return $this->render('get_post_list/index.html.twig', [
             'postItems' => $postItems,

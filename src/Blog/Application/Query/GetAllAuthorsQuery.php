@@ -6,7 +6,7 @@ namespace Blog\Application\Query;
 
 use Common\Application\Query;
 
-class GetAllPostQuery implements Query
+class GetAllAuthorsQuery implements Query
 {
     public function __construct()
     {

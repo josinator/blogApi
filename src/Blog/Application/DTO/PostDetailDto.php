@@ -27,4 +27,15 @@ class PostDetailDto
             $post->getAuthor()->getName(),
         );
     }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'authorId' => $this->authorId,
+            'author' => $this->author,
+        ];
+    }
 }

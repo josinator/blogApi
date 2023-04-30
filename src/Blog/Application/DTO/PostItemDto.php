@@ -25,4 +25,14 @@ class PostItemDto
             $post->getAuthor()->getName()
         );
     }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'authorId' => $this->authorId,
+            'author' => $this->authorName,
+        ];
+    }
 }

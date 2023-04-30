@@ -38,20 +38,6 @@ class DoctrinePostRepository implements PostRepository
         );
     }
 
-    /**
-     * @return array|Post[]
-     */
-    public function findPaginate(int $limit = 100, int $page = 1): array
-    {
-        return $this->entityManager->createQueryBuilder()
-            ->select('p')
-            ->from(Post::class, 'p')
-            ->setMaxResults($limit)
-            ->setFirstResult(($page - 1) * $limit)
-            ->getQuery()
-            ->getResult();
-    }
-
     public function findAll(): array
     {
         return $this->entityManager->getRepository(Post::class)->findAll();

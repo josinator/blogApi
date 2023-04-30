@@ -1,7 +1,8 @@
 <?php
 
-namespace Blog\Application\Query;
+declare(strict_types=1);
 
+namespace Blog\Application\Query;
 
 use Blog\Application\DTO\AuthorDetailDto;
 use Blog\DomainModel\AuthorRepository;

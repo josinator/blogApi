@@ -9,7 +9,6 @@ use Psalm\Immutable;
 #[Immutable]
 class WebSites extends ValueObject
 {
-
     public function __construct(public readonly string $site)
     {
         $this->guard($this->site);

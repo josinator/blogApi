@@ -8,7 +8,7 @@ use Blog\Application\DTO\PostItemDto;
 use Blog\DomainModel\PostRepository;
 use Common\Application\Query;
 
-class GetAllPostQueryHandler implements Query
+class GetAllPostsQueryHandler implements Query
 {
     public function __construct(private readonly PostRepository $postRepository)
     {
@@ -17,7 +17,7 @@ class GetAllPostQueryHandler implements Query
     /**
      * @return array|PostItemDto[]
      */
-    public function __invoke(GetAllPostQuery $query): array
+    public function __invoke(GetAllPostsQuery $query): array
     {
         $posts = $this->postRepository->findAll();
 

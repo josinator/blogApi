@@ -23,7 +23,7 @@ class GetPostDetailController extends AbstractController
         $postDto = $queryBus->handle(new GetPostByIdQuery($id));
 
         return $this->render('get_post_detail/index.html.twig', [
-            'post' => $postDto
+            'post' => $postDto,
         ]);
     }
 }

@@ -18,7 +18,7 @@ class Author
 {
     private int $id;
 
-    /** @var Collection|Post[] $posts */
+    /** @var Collection|Post[] */
     private Collection|array $posts;
 
     private function __construct(
@@ -143,7 +143,7 @@ class Author
         $this->company = $company;
     }
 
-    public function getPosts(): Collection
+    public function getPosts(): Collection|array
     {
         return $this->posts;
     }
