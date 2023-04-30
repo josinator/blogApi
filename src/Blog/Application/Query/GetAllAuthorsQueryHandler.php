@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blog\Application\Query;
 
 use Blog\Application\DTO\AuthorItemDto;
-use Blog\Application\DTO\PostItemDto;
 use Blog\DomainModel\AuthorRepository;
 use Common\Application\Query;
 
@@ -16,7 +15,7 @@ class GetAllAuthorsQueryHandler implements Query
     }
 
     /**
-     * @return array|PostItemDto[]
+     * @return array|AuthorItemDto[]
      */
     public function __invoke(GetAllAuthorsQuery $query): array
     {

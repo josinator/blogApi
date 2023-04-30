@@ -16,7 +16,7 @@ class GetAllApiPostsQueryHandler implements Query
     }
 
     /**
-     * @return array|PostItemDto[]
+     * @return array|PostApiDto[]
      */
     public function __invoke(GetAllApiPostsQuery $query): array
     {

@@ -26,7 +26,6 @@ class CreatePostCommandHandler
 
         try{
             $author = $this->authorRepository->findById($post['userId']);
-
             $postEntity = Post::postPostBuilder(
                 title: $post['title'],
                 description: $post['body'],
@@ -37,6 +36,5 @@ class CreatePostCommandHandler
         }catch (\Throwable $th){
             throw PostException::withData($post);
         }
-
     }
 }

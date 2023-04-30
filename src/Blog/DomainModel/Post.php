@@ -7,7 +7,7 @@ namespace Blog\DomainModel;
 class Post
 {
     private const DESCRIPTION_MIN_LENGTH = 25;
-    private int $id;
+    private ?int $id = null;
 
     private function __construct(
         private string $title,
@@ -55,7 +55,7 @@ class Post
         }
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
