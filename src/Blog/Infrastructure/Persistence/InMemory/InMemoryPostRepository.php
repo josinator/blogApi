@@ -26,7 +26,7 @@ class InMemoryPostRepository implements PostRepository
 
     public function findById(int $postId): ?Post
     {
-        return $this->posts[$postId];
+        return $this->posts[$postId] ?? null;
     }
 
     public function findAll(): array

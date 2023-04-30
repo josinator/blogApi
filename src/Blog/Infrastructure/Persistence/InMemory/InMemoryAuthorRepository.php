@@ -28,7 +28,7 @@ class InMemoryAuthorRepository implements AuthorRepository
 
     public function findById(int $authorId): ?Author
     {
-        return isset($this->authors[$authorId])?$this->authors[$authorId]:null;
+        return $this->authors[$authorId] ?? null;
     }
 
     public function findAll(): array

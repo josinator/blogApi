@@ -17,6 +17,8 @@ use Blog\Application\Query\GetPostByIdQueryHandler;
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorNotFoundException;
 use Blog\DomainModel\AuthorRepository;
+use Blog\DomainModel\Post;
+use Blog\DomainModel\PostException;
 use Blog\DomainModel\PostRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryAuthorRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryPostRepository;
@@ -26,38 +28,63 @@ use PHPUnit\Framework\TestCase;
 class GetPostByIdQueryHandlerTest  extends TestCase
 {
     private GetPostByIdQueryHandler $handler;
+    private PostRepository $postRepository;
 
     /** @before */
     public function prepareCommand(): void
     {
-        $authorRepository = new InMemoryAuthorRepository();
-        $authorRepository->save($this->getAuthor());
-        $this->handler = new GetPostByIdQueryHandler($authorRepository);
+        $this->postRepository = new InMemoryPostRepository();
+        $this->setPostData();
+        $this->handler = new GetPostByIdQueryHandler($this->postRepository);
 
 
     }
 
     /** @test */
-    public function whenNoExistIdOfAuthorWasRequestExceptionShouldThrow(): void
+    public function whenNoExistIdOfPostWasRequestExceptionShouldThrow(): void
     {
 
-        $this->expectException(AuthorNotFoundException::class);
-        $this->expectExceptionMessage('Author not found for authorId: 2');
-        $post = $this->handler->__invoke(new GetPostByIdQuery(2));
+        $this->expectException(PostException::class);
+        $this->expectExceptionMessage('No post found for Id: 3');
+        $this->handler->__invoke(new GetPostByIdQuery(3));
 
 
 
     }
 
     /** @test */
-    public function whenExistIdOfAuthorWasRequestAuthorWillResponse(): void
+    public function whenExistIdOfPostWasRequestPostWillResponse(): void
     {
         $post = $this->handler->__invoke(new GetPostByIdQuery(1));
 
         $this->assertNotEmpty($post);
-        $this->assertEquals('Leanne Graham', $post->name);
+        $this->assertEquals('Leanne Graham', $post->author);
+        $this->assertEquals('sunt aut facere repellat provident occaecati excepturi optio reprehenderit', $post->title);
 
 
+    }
+
+    private function setPostData()
+    {
+        $postData= json_decode(' [{
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "Titulo 2",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  }
+  ]', true);
+
+        foreach ($postData as $post){
+            $this->postRepository->save(Post::postPostBuilder(
+                $post['title'], $post['body'], $this->getAuthor()
+            ));
+        }
     }
 
     private function getAuthor()
@@ -86,7 +113,7 @@ class GetPostByIdQueryHandlerTest  extends TestCase
     "bs": "harness real-time e-markets"
   }
 }', true);
-        return Author::builder(
+        $author =Author::builder(
             $authorData['name'],
             $authorData['username'],
             $authorData['email'],
@@ -95,6 +122,9 @@ class GetPostByIdQueryHandlerTest  extends TestCase
             $authorData['website'],
             $authorData['company']
         );
+
+        $author->setId(1);
+        return $author;
 
     }
 }
