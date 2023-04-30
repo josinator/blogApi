@@ -9,12 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>{{ post.title }}</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/jose/proyectos/blogApi/src/App/Controller/GetPostDetailController.php'|file_link(0) }}">src/App/Controller/GetPostDetailController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/jose/proyectos/blogApi/templates/get_post_detail/index.html.twig'|file_link(0) }}">templates/get_post_detail/index.html.twig</a></code></li>
-    </ul>
+    <div class="post-body">
+        {{ post.description }}
+    </div>
+    <div class="author">
+        <a href="{{ url('app_get_author_detail', { 'id' : post.authorId}) }}">{{ post.author }}</a>
+    </div>
 </div>
 {% endblock %}

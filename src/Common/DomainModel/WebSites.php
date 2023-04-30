@@ -9,12 +9,10 @@ use Psalm\Immutable;
 #[Immutable]
 class WebSites extends ValueObject
 {
-    private string $site;
 
-    public function __construct(string $site)
+    public function __construct(public readonly string $site)
     {
-        $this->guard($site);
-        $this->site = $site;
+        $this->guard($this->site);
     }
 
     /**
@@ -25,11 +23,6 @@ class WebSites extends ValueObject
         if (false === filter_var($site, FILTER_VALIDATE_DOMAIN)) {
             throw WebSiteException::withInvalidValue($site);
         }
-    }
-
-    public function getSite(): string
-    {
-        return $this->site;
     }
 
     public function __toString(): string

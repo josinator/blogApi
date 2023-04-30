@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Blog\Application\Query\GetAuthorByIdQuery;
 use Blog\Application\Query\GetPostByIdQuery;
 use Common\Application\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,10 +19,10 @@ class GetAuthorDetailController extends AbstractController
         QueryBus $queryBus
     ): Response {
 
-        $post = $queryBus->handle(new GetPostByIdQuery($id));
+        $authorDto = $queryBus->handle(new GetAuthorByIdQuery($id));
 
-        return $this->render('get_post_detail/index.html.twig', [
-            'controller_name' => 'GetPostDetailController',
+        return $this->render('author/detail.html.twig', [
+            'author' => $authorDto
         ]);
     }
 }

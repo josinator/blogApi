@@ -10,6 +10,11 @@
         </id>
         <field name="title"/>
         <field name="description"/>
-        <many-to-one field="author" target-entity="Blog\DomainModel\Author"/>
+        <many-to-one field="author" target-entity="Blog\DomainModel\Author" inversed-by="posts">
+            <join-column name="author_id" referenced-column-name="id"/>
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

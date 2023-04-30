@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GetPostListController!{% endblock %}
+{% block title %}Post list: ✅{% endblock %}
 
 {% block body %}
 <style>
@@ -9,15 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    Post list:
-
+    <h1>Post list: ✅</h1>
     <ul>
         {% for post in postItems %}
             <li>
-                <a href="{{ url('app_get_post_detail', {'id': post.id}) }}"><span>title:{{ post.title }}</span></a>
-                <a href="{{ url('app_get_author_detail', {'id': post.authorId}) }}"><span>author:{{ post.title }}</span></a>
+                <a href="{{ url('app_get_post_detail', {'id': post.id}) }}"><span>{{ post.title }}</span></a>
             </li>
         {% endfor %}
     </ul>

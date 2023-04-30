@@ -15,6 +15,6 @@
         <embedded name="phone" class="Common\DomainModel\Phone" />
         <embedded name="site" class="Common\DomainModel\WebSites" />
         <embedded name="company" class="Common\DomainModel\Company" />
-        <one-to-many field="posts" target-entity="Blog\DomainModel\Post" mapped-by="post" fetch="EXTRA_LAZY"/>
+        <one-to-many field="posts" target-entity="Blog\DomainModel\Post" mapped-by="author"/>
     </entity>
 </doctrine-mapping>

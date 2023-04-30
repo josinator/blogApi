@@ -18,8 +18,8 @@ class Author
 {
     private int $id;
 
-    /** @var Collection|ArrayCollection blogs */
-    private Collection $posts;
+    /** @var Collection|Post[] $posts */
+    private Collection|array $posts;
 
     private function __construct(
         private string $name,

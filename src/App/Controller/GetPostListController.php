@@ -20,7 +20,6 @@ class GetPostListController extends AbstractController
         $postItems = $queryBus->handle(new GetAllPostQuery());
 
         return $this->render('get_post_list/index.html.twig', [
-            'controller_name' => 'GetPostListController',
             'postItems' => $postItems,
         ]);
     }

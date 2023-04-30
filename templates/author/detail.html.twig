@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GetPostDetailController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>{{ author.name }} / {{ author.username }}</h1>
+
+        <div class="info">
+            <h2>Author Info</h2>
+            <ul>
+                <li><span> {{ author.email }}</span></li>
+                <li><span> {{ author.phone }}</span></li>
+                <li><span> {{ author.site }}</span></li>
+                <li><span> {{ author.company }}</span></li>
+            </ul>
+
+        </div>
+
+        <div class="address">
+            <h3>Address</h3>
+            <ul>
+                <li><span> {{ author.address.street }}</span></li>
+                <li><span> {{ author.address.suit }}</span></li>
+                <li><span> {{ author.address.city }}</span></li>
+                <li><span> {{ author.address.zipCode }}</span></li>
+            </ul>
+        </div>
+
+        <div class="posts">
+            <h3>POSTs</h3>
+            <ul>
+                {% for post in author.posts %}
+                <li><a href="{{  url('app_get_post_detail', { 'id': post.id }) }}">{{ post.title }}</a> </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
