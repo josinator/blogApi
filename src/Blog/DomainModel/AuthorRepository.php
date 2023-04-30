@@ -6,7 +6,7 @@ namespace Blog\DomainModel;
 
 interface AuthorRepository
 {
-    public function save(Author $author): void;
+    public function save(Author $author): Author;
 
     public function remove(Author $author): void;
 

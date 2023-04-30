@@ -15,9 +15,11 @@ class DoctrineAuthorRepository implements AuthorRepository
 
     }
 
-    public function save(Author $author): void
+    public function save(Author $author): Author
     {
         $this->entityManager->persist($author);
+        $this->entityManager->flush();
+        return $author;
 
     }
 

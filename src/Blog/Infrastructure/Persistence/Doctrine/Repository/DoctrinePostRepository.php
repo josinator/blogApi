@@ -16,10 +16,11 @@ class DoctrinePostRepository implements PostRepository
 
     }
 
-    public function save(Post $post): void
+    public function save(Post $post): Post
     {
         $this->entityManager->persist($post);
-
+        $this->entityManager->flush();
+        return $post;
     }
 
     public function remove(Post $post): void

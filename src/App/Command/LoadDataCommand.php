@@ -874,9 +874,9 @@ EOF;
     {
         $io = new SymfonyStyle($input, $output);
 
-        // $io->success('Import Authors:');
-        // $this->loadAuthros();
-        // $io->success('Authors imported');
+        $io->success('Import Authors:');
+        $this->loadAuthros();
+        $io->success('Authors imported');
 
         $io->success('Import Posts:');
         $this->loadPosts();

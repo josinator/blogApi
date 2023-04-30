@@ -29,4 +29,9 @@ class PostException extends Exception
     {
         return new self(sprintf('No post found for Id: %s', $id));
     }
+
+    public static function withData(array $post)
+    {
+        return new self(sprintf('Try to create an Post with data: %s', json_encode($post)));
+    }
 }

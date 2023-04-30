@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Author
 {
-    private int $id;
+    private ?int $id = null;
 
     /** @var Collection|Post[] */
     private Collection|array $posts;
@@ -68,10 +68,17 @@ class Author
         }
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
+    public function setId(int $id): void
+    {
+        if(!$this->id ){
+            $this->id= $id;
+        }
+    }
+
 
     public function getName(): string
     {

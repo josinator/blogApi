@@ -6,7 +6,7 @@ namespace Blog\DomainModel;
 
 interface PostRepository
 {
-    public function save(Post $post): void;
+    public function save(Post $post): Post;
 
     public function remove(Post $post): void;
 

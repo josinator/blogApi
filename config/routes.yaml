@@ -1,10 +1,7 @@
 controllers:
-    api:
-       path: ../src/App/Controller/Api
-       namespace: App\Controller\Api
-       prefix: /api
     resource:
         path: ../src/App/Controller/
         namespace: App\Controller
-        exclude: ../src/App/Controller/Api
     type: attribute
+
+

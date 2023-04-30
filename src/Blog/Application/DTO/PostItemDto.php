@@ -19,7 +19,7 @@ class PostItemDto
     public static function builder(Post $post)
     {
         return new self(
-            $post->id,
+            $post->getId(),
             $post->getTitle(),
             $post->getAuthor()->getId(),
             $post->getAuthor()->getName()

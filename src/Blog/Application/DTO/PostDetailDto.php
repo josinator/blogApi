@@ -20,7 +20,7 @@ class PostDetailDto
     public static function builder(Post $post)
     {
         return new self(
-            $post->id,
+            $post->getId(),
             $post->getTitle(),
             $post->getDescription(),
             $post->getAuthor()->getId(),

@@ -7,7 +7,7 @@ namespace Blog\DomainModel;
 class Post
 {
     private const DESCRIPTION_MIN_LENGTH = 25;
-    public readonly int $id;
+    private int $id;
 
     private function __construct(
         private string $title,
@@ -54,6 +54,18 @@ class Post
             throw PostException::withToShortDescription();
         }
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function setId(int $id): void
+    {
+        if(!$this->id ){
+            $this->id= $id;
+        }
+    }
+
 
     public function getTitle(): string
     {

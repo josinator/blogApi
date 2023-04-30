@@ -18,7 +18,7 @@ class GetAllAuthorsQueryHandler implements Query
     /**
      * @return array|PostItemDto[]
      */
-    public function __invoke(GetAllPostsQuery $query): array
+    public function __invoke(GetAllAuthorsQuery $query): array
     {
         $authors = $this->authorRepository->findAll();
 

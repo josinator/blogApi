@@ -1,0 +1,4 @@
+api:
+    resource: '../../src/App/Api/'
+    prefix: '/api'
+    type: annotation

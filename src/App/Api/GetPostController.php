@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Api;
+namespace App\Api;
 
 use Blog\Application\Query\GetPostByIdQuery;
 use Common\Application\QueryBus;
@@ -21,11 +21,11 @@ class GetPostController extends AbstractController
         try {
             $postDto = $queryBus->handle(new GetPostByIdQuery($id));
         } catch (\Exception $e) {
-            return new JsonResponse(json_encode(['message' => $e->getMessage()]), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return new JsonResponse(['message' => $e->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (\Throwable $th) {
-            return new JsonResponse(json_encode(['message' => $th->getMessage()]), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return new JsonResponse(['message' => $th->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        return new JsonResponse(json_encode($postDto), Response::HTTP_OK);
+        return new JsonResponse($postDto, Response::HTTP_OK);
     }
 }

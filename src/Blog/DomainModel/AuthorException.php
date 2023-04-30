@@ -15,4 +15,9 @@ class AuthorException extends \Exception
     {
         return new self('Try to create an Author with empty UserName');
     }
+
+    public static function withData(array $author)
+    {
+        return new self(sprintf('Try to create an Author with data: %s', json_encode($author)));
+    }
 }
