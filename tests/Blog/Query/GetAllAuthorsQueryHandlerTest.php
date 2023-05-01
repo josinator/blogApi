@@ -4,21 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Query;
 
-use Blog\Application\DTO\AuthorItemDto;
-use Blog\Application\DTO\PostItemDto;
-use Blog\Application\Query\GetAllApiPostsQuery;
-use Blog\Application\Query\GetAllApiPostsQueryHandler;
 use Blog\Application\Query\GetAllAuthorsQuery;
 use Blog\Application\Query\GetAllAuthorsQueryHandler;
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorRepository;
-use Blog\DomainModel\PostRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryAuthorRepository;
-use Blog\Infrastructure\Persistence\InMemory\InMemoryPostRepository;
-use Common\Application\Query;
 use PHPUnit\Framework\TestCase;
 
-class GetAllAuthorsQueryHandlerTest  extends TestCase
+class GetAllAuthorsQueryHandlerTest extends TestCase
 {
     private GetAllAuthorsQueryHandler $handler;
     private AuthorRepository $authorRepository;
@@ -53,12 +46,11 @@ class GetAllAuthorsQueryHandlerTest  extends TestCase
         $this->assertCount(1, $authors);
         $this->assertEquals('Leanne Graham', $authors[0]->name);
 
-
     }
 
     private function getAuthor()
     {
-        $authorData =  json_decode(' 
+        $authorData = json_decode(' 
       {
       "id": 1,
   "name": "Leanne Graham",
@@ -82,6 +74,7 @@ class GetAllAuthorsQueryHandlerTest  extends TestCase
     "bs": "harness real-time e-markets"
   }
 }', true);
+
         return Author::builder(
             $authorData['name'],
             $authorData['username'],

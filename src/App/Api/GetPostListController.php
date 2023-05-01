@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Api;
 
 use Blog\Application\Query\GetAllApiPostsQuery;
-use Blog\Application\Query\GetAllPostsQuery;
 use Common\Application\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

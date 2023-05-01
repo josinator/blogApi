@@ -20,6 +20,7 @@ class DoctrinePostRepository implements PostRepository
     {
         $this->entityManager->persist($post);
         $this->entityManager->flush();
+
         return $post;
     }
 

@@ -4,28 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Query;
 
-use Blog\Application\DTO\AuthorItemDto;
-use Blog\Application\DTO\PostItemDto;
-use Blog\Application\Query\GetAllApiPostsQuery;
-use Blog\Application\Query\GetAllApiPostsQueryHandler;
-use Blog\Application\Query\GetAllAuthorsQuery;
-use Blog\Application\Query\GetAllAuthorsQueryHandler;
-use Blog\Application\Query\GetAuthorByIdQuery;
-use Blog\Application\Query\GetAuthorByIdQueryHandler;
 use Blog\Application\Query\GetPostByIdQuery;
 use Blog\Application\Query\GetPostByIdQueryHandler;
 use Blog\DomainModel\Author;
-use Blog\DomainModel\AuthorNotFoundException;
-use Blog\DomainModel\AuthorRepository;
 use Blog\DomainModel\Post;
 use Blog\DomainModel\PostException;
 use Blog\DomainModel\PostRepository;
-use Blog\Infrastructure\Persistence\InMemory\InMemoryAuthorRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryPostRepository;
-use Common\Application\Query;
 use PHPUnit\Framework\TestCase;
 
-class GetPostByIdQueryHandlerTest  extends TestCase
+class GetPostByIdQueryHandlerTest extends TestCase
 {
     private GetPostByIdQueryHandler $handler;
     private PostRepository $postRepository;
@@ -37,7 +25,6 @@ class GetPostByIdQueryHandlerTest  extends TestCase
         $this->setPostData();
         $this->handler = new GetPostByIdQueryHandler($this->postRepository);
 
-
     }
 
     /** @test */
@@ -47,8 +34,6 @@ class GetPostByIdQueryHandlerTest  extends TestCase
         $this->expectException(PostException::class);
         $this->expectExceptionMessage('No post found for Id: 3');
         $this->handler->__invoke(new GetPostByIdQuery(3));
-
-
 
     }
 
@@ -61,12 +46,11 @@ class GetPostByIdQueryHandlerTest  extends TestCase
         $this->assertEquals('Leanne Graham', $post->author);
         $this->assertEquals('sunt aut facere repellat provident occaecati excepturi optio reprehenderit', $post->title);
 
-
     }
 
-    private function setPostData()
+    private function setPostData(): void
     {
-        $postData= json_decode(' [{
+        $postData = json_decode(' [{
     "userId": 1,
     "id": 1,
     "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
@@ -80,16 +64,18 @@ class GetPostByIdQueryHandlerTest  extends TestCase
   }
   ]', true);
 
-        foreach ($postData as $post){
+        foreach ($postData as $post) {
             $this->postRepository->save(Post::postPostBuilder(
-                $post['title'], $post['body'], $this->getAuthor()
+                $post['title'],
+                $post['body'],
+                $this->getAuthor()
             ));
         }
     }
 
     private function getAuthor()
     {
-        $authorData =  json_decode(' 
+        $authorData = json_decode(' 
       {
       "id": 1,
   "name": "Leanne Graham",
@@ -113,7 +99,7 @@ class GetPostByIdQueryHandlerTest  extends TestCase
     "bs": "harness real-time e-markets"
   }
 }', true);
-        $author =Author::builder(
+        $author = Author::builder(
             $authorData['name'],
             $authorData['username'],
             $authorData['email'],
@@ -124,6 +110,7 @@ class GetPostByIdQueryHandlerTest  extends TestCase
         );
 
         $author->setId(1);
+
         return $author;
 
     }

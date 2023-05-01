@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Query;
 
-use Blog\Application\DTO\PostApiDto;
-use Blog\Application\DTO\PostItemDto;
-use Blog\Application\Query\GetAllApiPostsQuery;
-use Blog\Application\Query\GetAllApiPostsQueryHandler;
 use Blog\Application\Query\GetAllPostsQuery;
 use Blog\Application\Query\GetAllPostsQueryHandler;
 use Blog\DomainModel\Author;
 use Blog\DomainModel\Post;
 use Blog\DomainModel\PostRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryPostRepository;
-use Common\Application\Query;
 use PHPUnit\Framework\TestCase;
 
 class GetAllPostsQueryHandlerTest extends TestCase
@@ -51,13 +46,11 @@ class GetAllPostsQueryHandlerTest extends TestCase
         $this->assertEquals('Leanne Graham', $posts[0]->authorName);
         $this->assertEquals('Titulo 2', $posts[1]->title);
 
-
     }
 
-
-    private function setPostData()
+    private function setPostData(): void
     {
-        $postData= json_decode(' [{
+        $postData = json_decode(' [{
     "userId": 1,
     "id": 1,
     "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
@@ -71,16 +64,18 @@ class GetAllPostsQueryHandlerTest extends TestCase
   }
   ]', true);
 
-        foreach ($postData as $post){
+        foreach ($postData as $post) {
             $this->postRepository->save(Post::postPostBuilder(
-                $post['title'], $post['body'], $this->getAuthor()
+                $post['title'],
+                $post['body'],
+                $this->getAuthor()
             ));
         }
     }
 
     private function getAuthor()
     {
-        $authorData =  json_decode(' 
+        $authorData = json_decode(' 
       {
       "id": 1,
   "name": "Leanne Graham",
@@ -104,7 +99,7 @@ class GetAllPostsQueryHandlerTest extends TestCase
     "bs": "harness real-time e-markets"
   }
 }', true);
-        $author =Author::builder(
+        $author = Author::builder(
             $authorData['name'],
             $authorData['username'],
             $authorData['email'],
@@ -115,6 +110,7 @@ class GetAllPostsQueryHandlerTest extends TestCase
         );
 
         $author->setId(1);
+
         return $author;
 
     }

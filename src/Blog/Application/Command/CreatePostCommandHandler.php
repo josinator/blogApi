@@ -9,7 +9,6 @@ use Blog\DomainModel\AuthorRepository;
 use Blog\DomainModel\Post;
 use Blog\DomainModel\PostException;
 use Blog\DomainModel\PostRepository;
-use function PHPUnit\Framework\throwException;
 
 class CreatePostCommandHandler
 {
@@ -20,11 +19,11 @@ class CreatePostCommandHandler
 
     }
 
-    public function __invoke(CreatePostCommand $command):PostDetailDto
+    public function __invoke(CreatePostCommand $command): PostDetailDto
     {
         $post = $command->post;
 
-        try{
+        try {
             $author = $this->authorRepository->findById($post['userId']);
             $postEntity = Post::postPostBuilder(
                 title: $post['title'],
@@ -32,8 +31,9 @@ class CreatePostCommandHandler
                 author: $author
             );
             $post = $this->postRepository->save($postEntity);
+
             return PostDetailDto::builder($post);
-        }catch (\Throwable $th){
+        } catch (\Throwable $th) {
             throw PostException::withData($post);
         }
     }

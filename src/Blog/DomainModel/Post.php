@@ -59,13 +59,13 @@ class Post
     {
         return $this->id;
     }
+
     public function setId(int $id): void
     {
-        if(!$this->id ){
-            $this->id= $id;
+        if (!$this->id) {
+            $this->id = $id;
         }
     }
-
 
     public function getTitle(): string
     {

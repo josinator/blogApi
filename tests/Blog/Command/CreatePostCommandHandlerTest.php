@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Blog\Command;
 
 use Blog\Application\Command\CreatePostCommand;
@@ -15,7 +17,6 @@ use PHPUnit\Framework\TestCase;
 
 class CreatePostCommandHandlerTest extends TestCase
 {
-
     private PostRepository $postRepository;
     private AuthorRepository $authorRepository;
     private CreatePostCommandHandler $handler;
@@ -30,14 +31,12 @@ class CreatePostCommandHandlerTest extends TestCase
 
         $this->handler = new CreatePostCommandHandler($this->postRepository, $this->authorRepository);
 
-
-
     }
 
     /** @test */
     public function createAPostWithNoValidDataExceptionShouldBeThrow(): void
     {
-        $postData= $this->getPostData();
+        $postData = $this->getPostData();
         $postData['userId'] = 2;
         $this->expectException(PostException::class);
         $this->expectExceptionMessage('Try to create an Post with data: {"userId":2,"id":1,"title":"sunt aut facere repellat provident occaecati excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}');
@@ -45,11 +44,10 @@ class CreatePostCommandHandlerTest extends TestCase
 
     }
 
-
     /** @test */
     public function createAPostWithValidDataPostWillBeReturn(): void
     {
-        $postData= $this->getPostData();
+        $postData = $this->getPostData();
         $post = $this->handler->__invoke(new CreatePostCommand($postData));
         $this->assertInstanceOf(PostDetailDto::class, $post);
         $this->assertEquals($postData['title'], $post->title);
@@ -58,7 +56,6 @@ class CreatePostCommandHandlerTest extends TestCase
         $this->assertNotEmpty($post->author);
 
     }
-
 
     private function getPostData()
     {
@@ -72,7 +69,7 @@ class CreatePostCommandHandlerTest extends TestCase
 
     private function getAuthor()
     {
-        $authorData =  json_decode(' 
+        $authorData = json_decode(' 
       {
       "id": 1,
   "name": "Leanne Graham",
@@ -107,10 +104,5 @@ class CreatePostCommandHandlerTest extends TestCase
             $authorData['company']
         );
 
-
     }
-
-
-
-
 }

@@ -6,18 +6,17 @@ namespace Blog\Infrastructure\Persistence\InMemory;
 
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorRepository;
-use Blog\DomainModel\Post;
-use Blog\DomainModel\PostRepository;
 
 class InMemoryAuthorRepository implements AuthorRepository
 {
-
     private int $authorsId = 1;
     private array $authors = [];
+
     public function save(Author $author): Author
     {
         $author->setId($this->authorsId++);
-        $this->authors [ $author->getId()] = $author;
+        $this->authors[$author->getId()] = $author;
+
         return $author;
     }
 

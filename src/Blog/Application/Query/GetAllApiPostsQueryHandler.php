@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Blog\Application\Query;
 
 use Blog\Application\DTO\PostApiDto;
-use Blog\Application\DTO\PostItemDto;
 use Blog\DomainModel\PostRepository;
 use Common\Application\Query;
 

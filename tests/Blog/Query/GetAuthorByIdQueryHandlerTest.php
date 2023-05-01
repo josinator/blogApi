@@ -4,24 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Query;
 
-use Blog\Application\DTO\AuthorItemDto;
-use Blog\Application\DTO\PostItemDto;
-use Blog\Application\Query\GetAllApiPostsQuery;
-use Blog\Application\Query\GetAllApiPostsQueryHandler;
-use Blog\Application\Query\GetAllAuthorsQuery;
-use Blog\Application\Query\GetAllAuthorsQueryHandler;
 use Blog\Application\Query\GetAuthorByIdQuery;
 use Blog\Application\Query\GetAuthorByIdQueryHandler;
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorNotFoundException;
-use Blog\DomainModel\AuthorRepository;
-use Blog\DomainModel\PostRepository;
 use Blog\Infrastructure\Persistence\InMemory\InMemoryAuthorRepository;
-use Blog\Infrastructure\Persistence\InMemory\InMemoryPostRepository;
-use Common\Application\Query;
 use PHPUnit\Framework\TestCase;
 
-class GetAuthorByIdQueryHandlerTest  extends TestCase
+class GetAuthorByIdQueryHandlerTest extends TestCase
 {
     private GetAuthorByIdQueryHandler $handler;
 
@@ -31,7 +21,6 @@ class GetAuthorByIdQueryHandlerTest  extends TestCase
         $authorRepository = new InMemoryAuthorRepository();
         $authorRepository->save($this->getAuthor());
         $this->handler = new GetAuthorByIdQueryHandler($authorRepository);
-
 
     }
 
@@ -43,8 +32,6 @@ class GetAuthorByIdQueryHandlerTest  extends TestCase
         $this->expectExceptionMessage('Author not found for authorId: 2');
         $author = $this->handler->__invoke(new GetAuthorByIdQuery(2));
 
-
-
     }
 
     /** @test */
@@ -55,12 +42,11 @@ class GetAuthorByIdQueryHandlerTest  extends TestCase
         $this->assertNotEmpty($author);
         $this->assertEquals('Leanne Graham', $author->name);
 
-
     }
 
     private function getAuthor()
     {
-        $authorData =  json_decode(' 
+        $authorData = json_decode(' 
       {
       "id": 1,
   "name": "Leanne Graham",
@@ -84,6 +70,7 @@ class GetAuthorByIdQueryHandlerTest  extends TestCase
     "bs": "harness real-time e-markets"
   }
 }', true);
+
         return Author::builder(
             $authorData['name'],
             $authorData['username'],

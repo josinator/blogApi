@@ -9,13 +9,14 @@ use Blog\DomainModel\PostRepository;
 
 class InMemoryPostRepository implements PostRepository
 {
-
     private int $postsId = 1;
     private array $posts = [];
+
     public function save(Post $post): Post
     {
         $post->setId($this->postsId++);
-        $this->posts[ $post->getId()] = $post;
+        $this->posts[$post->getId()] = $post;
+
         return $post;
     }
 

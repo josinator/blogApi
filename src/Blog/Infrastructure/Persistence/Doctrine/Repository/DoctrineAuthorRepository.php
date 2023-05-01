@@ -19,6 +19,7 @@ class DoctrineAuthorRepository implements AuthorRepository
     {
         $this->entityManager->persist($author);
         $this->entityManager->flush();
+
         return $author;
 
     }

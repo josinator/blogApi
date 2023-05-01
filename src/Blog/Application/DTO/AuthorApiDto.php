@@ -32,7 +32,6 @@ class AuthorApiDto
             phone: $author->getPhone()->phone,
             site: $author->getSite()->site,
             company: $author->getCompany()->name,
-
         );
     }
 

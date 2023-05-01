@@ -8,7 +8,6 @@ use Blog\Application\DTO\AuthorDetailDto;
 use Blog\DomainModel\Author;
 use Blog\DomainModel\AuthorException;
 use Blog\DomainModel\AuthorRepository;
-use Throwable;
 
 class CreateAuthorCommandHandler
 {
@@ -19,7 +18,7 @@ class CreateAuthorCommandHandler
     public function __invoke(CreateAuthorCommand $command): AuthorDetailDto
     {
         $author = $command->author;
-        try{
+        try {
             $authorEntity = Author::builder(
                 name: $author['name'],
                 userName: $author['username'],
@@ -31,11 +30,11 @@ class CreateAuthorCommandHandler
             );
 
             $author = $this->authorRepository->save($authorEntity);
+
             return AuthorDetailDto::buildFromAuthor($author);
-        }catch (Throwable $th){
+        } catch (\Throwable $th) {
             throw AuthorException::withData($author);
         }
-
 
     }
 }
